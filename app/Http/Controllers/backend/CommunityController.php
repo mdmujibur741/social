@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CommunityStoreRequest;
@@ -15,6 +15,7 @@ class CommunityController extends Controller
 {
     public function index()
     {
+        
            $communities = CommunityResource::collection(Community::latest()->paginate(5));
            return Inertia::render('community/index', compact('communities'));
     }
@@ -30,19 +31,22 @@ class CommunityController extends Controller
             return Redirect::back();
     }
 
-    public function edit(Community $community)
+    public function edit($id)
     {
+        $community = Community::find($id);
         return Inertia::render('community/edit',compact('community'));
     }
 
-    public function update(CommunityUpdateRequest $request, Community $community)
+    public function update(CommunityUpdateRequest $request,$id)
     {
+             $community = Community::find($id);
               $community->update($request->all());
               return to_route('community.index');
     }
 
-    public function destroy(Community $community)
+    public function destroy($id)
     {
+        $community = Community::find($id);
            $community->delete();
            return Redirect::back();
     }

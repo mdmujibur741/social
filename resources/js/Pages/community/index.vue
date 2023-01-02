@@ -8,7 +8,7 @@
       </div>
 
       <div class="bg-slate-100 rounded-xl drop-shadow-xl p-5 mx-auto ">
-      <div class="flex px-3 justify-end">  <Link :href="route('community.create')" class="bg-blue-700 rounded-2xl text-white px-3 py-1">Community Add</Link></div>
+      <div class="flex px-3 justify-end m-2">  <Link :href="route('community.create')" class="bg-blue-700 rounded-2xl text-white px-3 py-1">Community Add</Link></div>
         <div class="overflow-x-auto relative sm:rounded-lg drop-shadow-2xl rounded-xl p-3">
           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead
@@ -31,9 +31,9 @@
                 <td class="py-2 px-3 border border-slate-500 rounded-xl">{{community.name}}</td>
                 <td class="py-2 px-3 border border-slate-500 rounded-xl">{{ community.description }}</td>
                 <td class="py-2 px-3 border border-slate-500 rounded-xl">
-                        <Link :href="route('community.edit',community.id)" class="bg-indigo-600 rounded-2xl px-3 py-1 text-white mx-1"> Edit </Link>
-                        <Link :href="route('community.destroy',community.id)" as="button" method="delete" class="bg-red-500 rounded-2xl px-3 py-1 text-white mx-1" onclick="confirm('Are you sure you want to delete this item')"> Delete </Link>                 
-                        </td>
+                     <Link :href="route('community.edit',community.id)" class="bg-indigo-600 rounded-xl px-3 py-1 mx-1 text-white">edit</Link>                        
+                     <Link :href="route('community.destroy',community.id)" as="button" method="delete" onclick="return confirm('Are You Sure Want To Delete')" class="bg-red-500 rounded-xl px-3 py-1 mx-1 text-white">Delete</Link>                        
+                </td>
              
               </tr>
             </tbody>

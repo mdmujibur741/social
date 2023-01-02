@@ -6,7 +6,7 @@
 <section class="bg-slate-300 min-h-[100vh] flex items-center justify-center">
            <form @submit.prevent="submit"  class="lg:w-5/12 md:w-11/12 w-full bg-slate-200 p-10 rounded-3xl drop-shadow-2xl justify-center m-5">
 
-                <div class="p-3 bg-slate-100 drop-shadow-xl rounded-2xl mb-12 w-7/12 mx-auto text-center text-2xl"> <b>Community Create</b> </div>
+                <div class="p-3 bg-slate-100 drop-shadow-xl rounded-2xl mb-12 w-7/12 mx-auto text-center text-2xl"> <b>Community Edit</b> </div>
 
             <div class="mb-3">
                     <InputLabel for="Name" value="Name"/>
