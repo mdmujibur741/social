@@ -14,9 +14,9 @@ class CommunityController extends Controller
 {
     public function index()
     {
-        
-           $communities = CommunityResource::collection(Community::where('user_id', auth()->id())->latest()->paginate(5));
-           return Inertia::render('community/index', compact('communities'));
+
+        $communities = CommunityResource::collection(Community::where('user_id', auth()->id())->latest()->paginate(5));
+        return Inertia::render('community/index', compact('communities'));
     }
 
     public function create()
@@ -26,27 +26,30 @@ class CommunityController extends Controller
 
     public function store(CommunityStoreRequest $request)
     {
-            Community::create($request->all() + ['user_id' => auth()->id()]);
-            return Redirect::back();
+        Community::create($request->all() + ['user_id' => auth()->id()]);
+        return Redirect::back();
     }
 
     public function edit($id)
     {
         $community = Community::find($id);
-        return Inertia::render('community/edit',compact('community'));
+        $this->authorize('update', $community);
+        return Inertia::render('community/edit', compact('community'));
     }
 
-    public function update(CommunityUpdateRequest $request,$id)
+    public function update(CommunityUpdateRequest $request, $id)
     {
-             $community = Community::find($id);
-              $community->update($request->all());
-              return to_route('backend.community.index');
+        $community = Community::find($id);
+        $this->authorize('update', $community);
+        $community->update($request->all());
+        return to_route('backend.community.index');
     }
 
     public function destroy($id)
     {
         $community = Community::find($id);
-           $community->delete();
-           return Redirect::back();
+        $this->authorize('delete', $community);
+        $community->delete();
+        return Redirect::back();
     }
 }

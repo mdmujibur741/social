@@ -70,7 +70,7 @@
 
 
   const submit = () => {
-         form.post(route('post.store'),{
+         form.post(route('backend.post.store'),{
              onSuccess: () => cleanForm(),
          });    
   }

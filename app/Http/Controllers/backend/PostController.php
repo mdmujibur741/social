@@ -39,11 +39,13 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $community = $post->communities->slug;
+        $this->authorize('update', $post);
         return Inertia::render('post/edit',compact('post','community'));
     }
 
     public function update(PostUpdateRequest $request, Post $post)
     {
+        $this->authorize('update', $post);
               $post->update([
                  'title' => $request->title,
                  'url' => $request->url,
@@ -55,6 +57,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {   
        $community = $post->communities->slug;
+       $this->authorize('delete', $post);
          $post->delete();
         // return "done";
          return Redirect::route('frontend.community.show',$community);

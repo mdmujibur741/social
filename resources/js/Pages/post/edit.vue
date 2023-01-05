@@ -67,7 +67,7 @@
 
 
   const submit = () => {
-         form.put(route('post.update',props.post?.id),{
+         form.put(route('backend.post.update',props.post?.id),{
              onSuccess: () => cleanForm(),
          });    
   }
