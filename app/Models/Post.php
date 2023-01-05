@@ -24,6 +24,7 @@ class Post extends Model
 
 
 
+
     // relationship 
     public function communities()
     {

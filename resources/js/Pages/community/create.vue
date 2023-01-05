@@ -56,7 +56,7 @@
 
 
            const submit = () => {
-                  form.post(route('community.store'),{
+                  form.post(route('backend.community.store'),{
                       onSuccess: () => cleanForm(),
                   });    
            }

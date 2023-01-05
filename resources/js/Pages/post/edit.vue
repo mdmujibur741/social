@@ -6,7 +6,7 @@
 <section class="bg-slate-300 min-h-[100vh] flex items-center justify-center">
   <form @submit.prevent="submit"  class="lg:w-5/12 md:w-11/12 w-full bg-slate-200 p-10 rounded-3xl drop-shadow-2xl justify-center m-5">
 
-       <div class="p-3 bg-slate-100 drop-shadow-xl rounded-2xl mb-12 w-7/12 mx-auto text-center text-2xl"> <b>{{ community.name.toUpperCase() }} Post Create</b> </div>
+       <div class="p-3 bg-slate-100 drop-shadow-xl rounded-2xl mb-12 w-7/12 mx-auto text-center text-2xl"> <b>{{ community.toUpperCase() }} Post Edit</b> </div>
 
    <div class="mb-3">
            <InputLabel for="title" value="Title"/>
@@ -23,14 +23,15 @@
 
        <div class="mb-3">
            <InputLabel for="description" value="Description"/>
-           <textarea class="w-full rounded-2xl border-slate-300 p-2" rows="2" v-model="form.description" id="description" placeholder="Enter  Description"></textarea>
+         
+            <textarea class="w-full rounded-2xl border-slate-300 p-2" rows="3" v-model="form.description" id="description" placeholder="Enter  Description"></textarea>
            <InputError :message="form.errors.description"/>
        </div>
 
 
         <div class="text-center">
            <PrimaryButton class="ml-4 " :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-          Submit
+          Update
        </PrimaryButton>
         </div>
   </form>
@@ -57,20 +58,16 @@
 
 
  const props = defineProps({
-         community : Object
+         post : Object,
+         community : String
   })
 
 
-  const form = useForm({
-         title : '',
-         description : '',
-         url : '',
-         community_id : props.community?.id
-  })
+  const form = useForm(props.post)
 
 
   const submit = () => {
-         form.post(route('post.store'),{
+         form.put(route('post.update',props.post?.id),{
              onSuccess: () => cleanForm(),
          });    
   }
@@ -78,7 +75,7 @@
 
   function cleanForm() {
         form.reset();
-        toastr.success( props.community?.name.toUpperCase() +" Post Add Successfully");
+        toastr.success( props.community.toUpperCase() +" Post Update Successfully");
   }  
 
 

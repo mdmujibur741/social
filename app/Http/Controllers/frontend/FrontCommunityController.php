@@ -13,9 +13,10 @@ class FrontCommunityController extends Controller
 {
     public function show($slug)
     {
-           $community = Community::where('slug', $slug)->first();
-           $posts = PostResource::collection(Post::with('users')->where('community_id', $community->id)->paginate(5));
-
+          
+        $community = Community::where('slug', $slug)->firstOrFail();
+           $posts = PostResource::collection(Post::with('users')->where('community_id', $community->id)->paginate(10));
+           
            return Inertia::render('frontend/community/show',compact('community','posts'));
     }
 }

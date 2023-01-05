@@ -55,7 +55,7 @@
              })
 
            const submit = () => {
-                  form.put(route('community.update',props.community?.id),{
+                  form.put(route('backend.community.update',props.community?.id),{
                       onSuccess: () => toastr.success('Community Data Update Successfully'),
                   });    
            }

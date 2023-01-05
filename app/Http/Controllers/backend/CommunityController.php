@@ -7,7 +7,6 @@ use App\Http\Requests\CommunityStoreRequest;
 use App\Http\Requests\CommunityUpdateRequest;
 use App\Http\Resources\CommunityResource;
 use App\Models\Community;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -16,13 +15,13 @@ class CommunityController extends Controller
     public function index()
     {
         
-           $communities = CommunityResource::collection(Community::latest()->paginate(5));
+           $communities = CommunityResource::collection(Community::where('user_id', auth()->id())->latest()->paginate(5));
            return Inertia::render('community/index', compact('communities'));
     }
 
     public function create()
     {
-          return Inertia::render('community/create');
+        return Inertia::render('community/create');
     }
 
     public function store(CommunityStoreRequest $request)
@@ -41,7 +40,7 @@ class CommunityController extends Controller
     {
              $community = Community::find($id);
               $community->update($request->all());
-              return to_route('community.index');
+              return to_route('backend.community.index');
     }
 
     public function destroy($id)

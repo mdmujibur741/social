@@ -23,6 +23,7 @@ class PostResource extends JsonResource
                  'username' => $this->users->name,
                 'slug' => $this->slug,   
                 'url' => $this->url,  
+                'owner' => auth()->id() == $this->user_id ? true :false,
         ];
     }
 }

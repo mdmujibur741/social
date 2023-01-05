@@ -10,11 +10,11 @@
                     
              
                     <div v-if="$page.props.auth.auth_check" class="text-end m-1"> 
-                        <Link :href="route('post.create',community.slug)" class="bg-indigo-600 px-3 py-2 rounded-2xl text-white">Add Post</Link>     
+                        <Link :href="route('backend.post.create',community.slug)" class="bg-indigo-600 px-3 py-2 rounded-2xl text-white">Add Post</Link>     
                     </div>
                  
 
-                    <div class="flex justify-between lg:w-10/12 mx-auto">
+                    <div class="flex justify-between lg:w-10/12 mx-auto gap-x-8">
 
                            <div class=""> 
                               <PostCard v-for="post in posts.data" :post="post" :key="post.id" :community="community.slug"></PostCard>
@@ -26,7 +26,7 @@
                               </div>
                             </div>   
                     </div>
-                    
+                  
                       <!-- pagination -->
                       <Pagination :links="posts.meta.links"/>
 
@@ -42,7 +42,7 @@
 
 <script setup>
                   import Pagination from '@/Components/Pagination.vue';
-import PostCard from '@/Components/PostCard.vue';
+                   import PostCard from '@/Components/PostCard.vue';
                   import GuestLayout from '@/Layouts/GuestLayout.vue';
                   import { Link } from '@inertiajs/inertia-vue3';
           defineProps({
