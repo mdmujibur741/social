@@ -13,7 +13,7 @@ class FrontPostController extends Controller
 {
     public function show($community_slug, $slug)
     {
-        $post = new PostResource(Post::where('slug', $slug)->first());
+        $post = new PostResource(Post::with('comments')->where('slug', $slug)->first());
         return Inertia::render('frontend/post/show' ,compact('community_slug','post'));
     }
 }
