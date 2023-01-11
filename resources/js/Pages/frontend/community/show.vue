@@ -45,6 +45,7 @@
                    import PostCard from '@/Components/PostCard.vue';
                   import GuestLayout from '@/Layouts/GuestLayout.vue';
                   import { Link } from '@inertiajs/inertia-vue3';
+                  import PostVote from '@/Components/PostVote.vue';
           defineProps({
                community : Object,
                posts : Object

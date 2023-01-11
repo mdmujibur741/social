@@ -22,6 +22,7 @@
                          <h2 class="text-slate-800 text-bold my-2 text-xl"> {{ props.post.data.title }} </h2> 
                          <p class="text-justify"> {{ props.post.data.description }} </p>
                          <span> <a :href="post.data.url">{{ props.post.data.url }}</a> </span>
+                         <PostVote v-if="$page.props.auth.auth_check" :post="post"/>
                     </div>
             </div>
                   
@@ -63,6 +64,7 @@
 import InputLabel from "@/Components/InputLabel.vue";
 import Pagination from "@/Components/Pagination.vue";
 import PostCard from "@/Components/PostCard.vue";
+import PostVote from "@/Components/PostVote.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import GuestLayout from "@/Layouts/GuestLayout.vue";
 import { Link, useForm } from "@inertiajs/inertia-vue3";

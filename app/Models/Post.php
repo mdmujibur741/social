@@ -10,7 +10,7 @@ class Post extends Model
 {
     use HasFactory, Sluggable;
 
-    protected $fillable =['user_id', 'community_id', 'title', 'description', 'slug', 'url'];
+    protected $fillable =['user_id', 'community_id', 'title', 'description', 'slug', 'url','votes'];
 
 
     public function sluggable(): array
@@ -40,6 +40,12 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+
+    public function postVotes()
+    {
+        return $this->hasMany(PostVote::class);
     }
   
 

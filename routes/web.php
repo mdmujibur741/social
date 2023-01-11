@@ -3,6 +3,7 @@
 use App\Http\Controllers\backend\CommentController;
 use App\Http\Controllers\backend\CommunityController;
 use App\Http\Controllers\backend\PostController;
+use App\Http\Controllers\backend\PostVoteController;
 use App\Http\Controllers\frontend\FrontCommunityController;
 use App\Http\Controllers\frontend\FrontPostController;
 use App\Http\Controllers\ProfileController;
@@ -21,6 +22,8 @@ Route::get('/', function () {
  Route::get('/r/{slug}', [FrontCommunityController::class, 'show'])->name('frontend.community.show');
  Route::get('/r/{community_slug}/{slug}', [FrontPostController::class,'show'])->name('frontend.post.show');
  Route::post('/r/{community_slug}/{slug}/comment', [CommentController::class,'store'])->name('frontend.comment.store');
+ Route::post('/r/post/like/{slug}', [PostVoteController::class,'like'])->name('frontend.post.like');
+ Route::post('/r/post/dislike/{slug}', [PostVoteController::class,'dislike'])->name('frontend.post.dislike');
  
 
 

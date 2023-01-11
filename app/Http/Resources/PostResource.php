@@ -19,12 +19,14 @@ class PostResource extends JsonResource
                 'id' => $this->id,
                 'title' => $this->title,
                 'description' => $this->description,
-               //  'user' => new UserResource($this->whenLoaded('users')),
+                 'users' => new UserResource($this->whenLoaded('users')),
                  'username' => $this->users->name,
                 'slug' => $this->slug,   
                 'url' => $this->url,  
+                'votes' => $this->votes,
                 'owner' => auth()->id() == $this->user_id ? true :false,
                 'comments' => CommentResource::collection($this->whenLoaded('comments')),
+                'postVotes' => $this->whenLoaded('postVotes'),
         ];
     }
 }
